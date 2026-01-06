@@ -34,6 +34,7 @@ const InputPage = () => {
         },
       });
     } catch (err) {
+      console.error(err);
       alert("Resume analysis failed");
     } finally {
       setLoading(false);

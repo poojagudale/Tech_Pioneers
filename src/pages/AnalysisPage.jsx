@@ -5,10 +5,8 @@ const AnalysisPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ SAFE FALLBACK DATA
   const readiness = location.state?.readiness ?? 50;
-  const skills =
-    location.state?.skills ?? ["JavaScript", "React"];
+  const skills = location.state?.skills ?? ["JavaScript", "React"];
 
   const handleGenerateRoadmap = () => {
     navigate("/roadmap", {
@@ -21,21 +19,22 @@ const AnalysisPage = () => {
       <h1 className="analysis-title">Resume Analysis Result</h1>
 
       <div className="analysis-container">
-        {/* Readiness Card */}
         <div className="analysis-card">
           <h2>Readiness Score</h2>
           <div className="score-circle">
             <span>{readiness}%</span>
           </div>
           <p className="score-text">
-            You are moderately prepared
+            {readiness >= 70
+              ? "You are well prepared"
+              : readiness >= 40
+              ? "You are moderately prepared"
+              : "You need improvement"}
           </p>
         </div>
 
-        {/* Skills Gap Card */}
         <div className="analysis-card">
           <h2>Skills Gap</h2>
-
           {skills.length > 0 ? (
             <>
               <ul className="skills-list">
@@ -43,11 +42,7 @@ const AnalysisPage = () => {
                   <li key={index}>{skill}</li>
                 ))}
               </ul>
-
-              <button
-                className="primary-btn"
-                onClick={handleGenerateRoadmap}
-              >
+              <button className="primary-btn" onClick={handleGenerateRoadmap}>
                 Generate Roadmap
               </button>
             </>

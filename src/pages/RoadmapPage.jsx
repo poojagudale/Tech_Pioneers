@@ -16,6 +16,9 @@ const roadmapContent = {
     "Routing",
     "Build a full project",
   ],
+  NodeJS: ["Core modules", "Express basics", "REST APIs", "Authentication", "Deploy apps"],
+  SQL: ["Queries", "Joins", "Indexes", "Stored Procedures", "Database design"],
+  Python: ["Syntax", "Libraries (Pandas, NumPy)", "Data analysis", "Visualization", "Projects"],
 };
 
 const RoadmapPage = () => {
@@ -41,9 +44,11 @@ const RoadmapPage = () => {
             <div className="roadmap-card" key={index}>
               <h2>{skill}</h2>
               <ul>
-                {(roadmapContent[skill] || []).map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
+                {(roadmapContent[skill] || ["Learn fundamentals"]).map(
+                  (item, i) => (
+                    <li key={i}>{item}</li>
+                  )
+                )}
               </ul>
             </div>
           ))}
